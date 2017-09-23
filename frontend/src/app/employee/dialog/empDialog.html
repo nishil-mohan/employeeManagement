@@ -1,0 +1,32 @@
+ 
+<section class="mat-typography">
+      <form class="example-form" [formGroup]="empForm" (ngSubmit)="onSubmit(empForm)">
+             
+          
+            <p>
+                    <md-form-field class="example-full-width">
+                            <input mdInput formControlName="name" placeholder="Name" maxlength=30>
+                            <div *ngIf="empForm.get('name').hasError('required')" color="red" class="caption">
+                                    Please provide Name
+                            </div>
+                          </md-form-field>  
+                          <md-form-field class="example-full-width">
+                                <input mdInput formControlName="department" placeholder="Department"  maxlength=10>
+                          </md-form-field>  
+                          <md-form-field class="example-full-width">
+                                <input mdInput formControlName="designation" placeholder="designation" maxlength=10>
+                          </md-form-field>  
+                          <md-form-field class="example-full-width">
+                                <input mdInput formControlName="email" placeholder="email">
+                                <div *ngIf="empForm.get('email').hasError('pattern')" color="red">
+                                          Please provide a valid email
+                                        </div>
+                                <input hidden formControlName="id" >
+                          </md-form-field>    
+                  </p>
+          <p>
+                <button *ngIf="action!='V'" type="submit" [disabled]="empForm.invalid">Save</button>
+          </p>
+             
+          </form>
+      </section>

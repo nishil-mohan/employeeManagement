@@ -1,0 +1,89 @@
+
+
+  <md-table *ngIf="gridView"   #table [dataSource]="dataSource" >
+
+  <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  <ng-container mdColumnDef="actions">
+    <md-header-cell *mdHeaderCellDef> Actions </md-header-cell>
+    <md-cell *mdCellDef="let row">
+      <button md-icon-button color="primary" (click)="onViewDisplay(row)">
+                <md-icon class="mat-icon-20">pageview</md-icon>
+              </button>
+
+      <button md-icon-button color="primary" (click)="onEditDisplay(row)">
+                  <md-icon class="mat-icon-20">edit</md-icon>
+                </button>
+      <button md-icon-button color="primary" (click)="deleteEmployee(row)">
+                    <md-icon class="mat-icon-20">delete</md-icon>
+                  </button>
+    </md-cell>
+  </ng-container>
+  <!-- ID Column -->
+  <ng-container mdColumnDef="employeeId">
+    <md-header-cell *mdHeaderCellDef> ID </md-header-cell>
+    <md-cell *mdCellDef="let row"> {{row.id}} </md-cell>
+  </ng-container>
+
+  <!-- Progress Column -->
+  <ng-container mdColumnDef="name">
+    <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
+    <md-cell *mdCellDef="let row"> {{row.name}} </md-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container mdColumnDef="Designation">
+    <md-header-cell *mdHeaderCellDef> Designation </md-header-cell>
+    <md-cell *mdCellDef="let row"> {{row.designation}} </md-cell>
+  </ng-container>
+
+  <!-- Color Column -->
+  <ng-container mdColumnDef="Department">
+    <md-header-cell *mdHeaderCellDef> Department </md-header-cell>
+    <md-cell *mdCellDef="let row"> {{row.department}} </md-cell>
+  </ng-container>
+
+  <ng-container mdColumnDef="email">
+      <md-header-cell *mdHeaderCellDef> Email </md-header-cell>
+      <md-cell *mdCellDef="let row"> {{row.email}} </md-cell>
+    </ng-container>
+
+  <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+  <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+</md-table>
+ 
+
+
+ <div class="example-container main_container">
+<md-grid-list *ngIf="!gridView" cols="2" rowHeight="250px" fxLayoutWrap  fxLayout="row" fxLayoutAlign="center center" >
+  <md-grid-tile *ngFor="let employee of getEmployeeFeed()|async" [rowspan]="1" [colspan]="1">
+    <md-card class="example-card">
+      <md-card-header>
+        <div md-card-avatar class="example-header-image"></div>
+        <md-card-title><b>Emp Id:-</b>{{employee.id}}</md-card-title>
+      </md-card-header>
+
+      <md-card-content>
+        <h3 md-line><b>Name:-</b>{{employee.name}}</h3>
+        <h3 md-line><b>Designation:-</b>{{employee.designation}}</h3>
+        <h3 md-line><b>Department:-</b>{{employee.department}}</h3>
+        <h3 md-line><b>Email:-</b>{{employee.email}}</h3>
+      </md-card-content>
+      <md-card-actions>
+        <button md-icon-button color="primary" (click)="onViewDisplay(employee)">
+              <md-icon class="mat-icon-20">pageview</md-icon>
+            </button>
+
+        <button md-icon-button color="primary" (click)="onEditDisplay(employee)">
+                <md-icon class="mat-icon-20">edit</md-icon>
+              </button>
+        <button md-icon-button color="primary" (click)="deleteEmployee(employee)">
+                  <md-icon class="mat-icon-20">delete</md-icon>
+                </button>
+      </md-card-actions>
+    </md-card>
+
+
+  </md-grid-tile>
+</md-grid-list>
+</div>

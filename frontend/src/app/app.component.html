@@ -1,0 +1,67 @@
+<!-- 
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be found in the LICENSE file at https://angular.io/license
+-->
+ 
+  <section [class.dark-theme]="isDarkTheme">
+    <!-- toolbar -->
+    <md-toolbar color="primary" class="mat-elevation-z7">
+
+      <span>
+      <md-icon class="mat-icon-20">apps</md-icon>
+      <span>Employee Portal</span>
+      </span>
+      <span class="example-spacer"></span>
+      <button md-icon-button [md-menu-trigger-for]="menu">
+      <md-icon>more_vert</md-icon>
+    </button>
+
+    </md-toolbar>
+
+    <!-- menu -->
+    <md-menu x-position="before" #menu="mdMenu">
+      <button md-menu-item (click)="isGridView=!isGridView">Toggle View</button>
+       
+      <button md-menu-item>Help</button>
+    </md-menu>
+
+    <md-sidenav-container>
+      <div class="example-container mat-elevation-z8">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <span class="example-header">            
+              Filter Users 
+              <md-icon>filter_list</md-icon>             
+          </span>
+          <span class="example-header">            
+              <input  #filter placeholder="Filter users">            
+          </span>
+          <div class="example-spacer"></div>
+
+          <div class="example-header">
+            <button md-raised-button (click)="openDialog()" color="accent">
+                  Add Employee
+                </button>
+            <button md-raised-button (click)="exportData()" color="accent">
+                    Export
+                  </button>         
+            <button md-raised-button (click)="openFileDialog()" color="accent">
+                      Import
+                    </button>
+            <button md-raised-button (click)="isGridView=!isGridView" color="accent">
+              Toggle View
+            </button>
+          </div>
+        </div>
+        <!-- main content -->
+        <d-table [gridView]="isGridView" (editDialog)="openEmployeeDialog($event,'E')" (viewDialog)="openEmployeeDialog($event,'V')"></d-table>
+      </div>
+    </md-sidenav-container>
+
+  </section>
+ 
+
+
+<!-- 
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be found in the LICENSE file at https://angular.io/license
+-->
